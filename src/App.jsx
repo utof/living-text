@@ -1,40 +1,60 @@
-import { useState } from 'react'
-import styled from '@emotion/styled'
+import { useState } from "react";
+import styled from "@emotion/styled";
 
-const Container = styled.div`
-  @apply h-full w-full bg-white flex items-center justify-center overflow-hidden;
-`
+const FullScreenDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+`;
 
-const GlassText = styled.input`
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  color: #111;
-  border: none;
-  outline: none;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  transition: font-size 0.2s ease;
-  width: 100%;
-  height: auto;
-`
+const EdgeToEdgeText = styled.div`
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 2rem;
+  line-height: 1.2;
+  word-break: break-all;
+  white-space: pre-wrap;
+  /* Force wrap after N characters (e.g., 40ch) */
+  max-width: 100vw;
+  max-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+`;
 
-function App() {
-  const [text, setText] = useState("Type something beautiful")
-
-  const fontSize = Math.max(1, 10 - text.length * 0.2)
+export default function App() {
+  const [text, setText] = useState("AAAAAAAAAAAAAA");
 
   return (
-    <Container>
-      <GlassText
-        type="text"
-        value={text}
-        onChange={e => setText(e.target.value)}
-        style={{
-          fontSize: `${fontSize}vw`
-        }}
-      />
-    </Container>
-  )
+    <FullScreenDiv>
+      <EdgeToEdgeText>
+        <textarea
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          style={{
+            width: "100%",
+            height: "100%",
+            fontSize: "2rem",
+            lineHeight: 1.2,
+            border: "none",
+            resize: "none",
+            background: "transparent",
+            color: "inherit",
+            fontFamily: "inherit",
+            outline: "none",
+            boxSizing: "border-box",
+          }}
+        />
+      </EdgeToEdgeText>
+    </FullScreenDiv>
+  );
 }
-
-export default App
