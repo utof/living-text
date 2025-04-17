@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import React, { useEffect, useRef, useState } from "react";
 
 export default function App() {
   const [text, setText] = useState("ASADDSADASDASDA");
@@ -28,25 +27,21 @@ export default function App() {
     >
       <textarea
         ref={textRef}
-        ref={textRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         style={{
           fontSize: `${fontSize}px`,
-          fontSize: `${fontSize}px`,
+
           width: "100%",
           height: "100%",
           lineHeight: 1.2,
           resize: "none",
-          resize: "none",
+
           outline: "none",
-          background: "pink",
-          overflow: "hidden",
           background: "pink",
           overflow: "hidden",
         }}
       />
-    </div>
     </div>
   );
 }
