@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import GlassmorphicBackground from "./GlassmorphicBackground";
 
 export default function App() {
   const [text, setText] = useState("ASADDSADASDASDA");
@@ -23,23 +24,29 @@ export default function App() {
 
   return (
     <div
-      style={{ height: "100vh", overflow: "hidden", wordBreak: "break-word" }}
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        wordBreak: "break-word",
+        position: "relative",
+      }}
     >
+      <GlassmorphicBackground />
       <textarea
         ref={textRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         style={{
           fontSize: `${fontSize}px`,
-
           width: "100%",
           height: "100%",
           lineHeight: 1.2,
           resize: "none",
-
           outline: "none",
-          background: "pink",
+          background: "rgba(255, 235, 239, 0.7)",
           overflow: "hidden",
+          position: "relative",
+          zIndex: 1,
         }}
       />
     </div>
