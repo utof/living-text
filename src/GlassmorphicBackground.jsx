@@ -14,7 +14,7 @@ export default function GlassmorphicBackground() {
       r: 100 + Math.random() * 200,
       dx: (Math.random() - 0.5) * 1.2,
       dy: (Math.random() - 0.5) * 1.2,
-      color: `hsla(${Math.random() * 536 + 360}, 80%, 50%, 1)`
+      color: `hsla(${Math.random() * 536 + 360}, 100%, 10%, 1)`,
     }));
 
     function draw() {

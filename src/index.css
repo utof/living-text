@@ -3,3 +3,9 @@ html, body, #root {
   height: 100%;
   margin: 0;
 }
+.syne-unique {
+  font-family: "Syne", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
