@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import GlassmorphicBackground from "./GlassmorphicBackground";
 
+const fontWeight = Math.random() * 500 + 100; // Random font weight between 100 and 1000
 export default function App() {
   const [text, setText] = useState("Such Text, Very Wow");
   const textRef = useRef(null);
-  const [fontSize, setFontSize] = useState(400); // in px
+  const [fontSize, setFontSize] = useState(350); // in px
 
   useEffect(() => {
     const el = textRef.current;
@@ -15,7 +16,7 @@ export default function App() {
 
     for (let i = 0; i < maxTries; i++) {
       if (el.scrollHeight <= el.clientHeight) break;
-      size -= 2;
+      size -= 1;
       el.style.fontSize = `${size}px`;
     }
 
@@ -42,11 +43,12 @@ export default function App() {
           height: "100%",
           lineHeight: 1.2,
           fontFamily: "'Syne', sans-serif",
-          color: "rgba(0, 0, 0, 0.8)",
-          fontWeight: "$(Math.random() * 900 + 100)",
+          color: "rgba(0, 0, 0, 0.774)",
+          fontWeight: fontWeight,
           resize: "none",
           outline: "none",
-          background: "rgba(255, 235, 239, 0.7)",
+          background: "rgba(255, 255, 255, 0.5)",
+          //   textShadow: "-20px 20px 36px #bebebe, 20px -20px 36px #ffffff",
           overflow: "hidden",
           position: "relative",
           zIndex: 1,

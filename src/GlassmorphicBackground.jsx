@@ -1,4 +1,15 @@
 import React, { useEffect, useRef } from "react";
+const excludeHueRanges = [
+  [60, 170], // dull reds/oranges/yellows
+];
+function randHue(exclude = []) {
+  let h;
+  do h = Math.random() * 360;
+  while (
+    exclude.some(([a, b]) => (a <= b ? h >= a && h <= b : h >= a || h <= b))
+  );
+  return h;
+}
 
 // Glassmorphic, blurry, moving shapes background
 export default function GlassmorphicBackground() {
@@ -8,14 +19,19 @@ export default function GlassmorphicBackground() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     let animationFrameId;
-    const shapes = Array.from({ length: 20 }).map(() => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      r: 100 + Math.random() * 200,
-      dx: (Math.random() - 0.5) * 1.2,
-      dy: (Math.random() - 0.5) * 1.2,
-      color: `hsla(${Math.random() * 536 + 360}, 100%, 10%, 1)`,
-    }));
+    const shapes = Array.from({ length: 20 }).map(() => {
+      const hue = randHue(excludeHueRanges);
+      return {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: 50 + Math.random() * 200,
+        dx: (Math.random() - 0.5) * 1.2,
+        dy: (Math.random() - 0.5) * 1.2,
+        color: `hsla(${hue}, ${80 + Math.random() * 20}%, ${
+          50 + Math.random() * 10
+        }%, 0.9)`,
+      };
+    });
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -25,7 +41,7 @@ export default function GlassmorphicBackground() {
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fillStyle = s.color;
         ctx.shadowColor = s.color;
-        ctx.shadowBlur = 40;
+        ctx.shadowBlur = 0;
         ctx.globalAlpha = 0.7;
         ctx.fill();
         ctx.restore();
@@ -61,9 +77,10 @@ export default function GlassmorphicBackground() {
         left: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: 0,
         pointerEvents: "none",
-        filter: "blur(50px) saturate(10000%)",
+        filter: "blur(100px) saturate(10000%)",
+        // transform: "scale(5)",
+        backgroundColor: "rgba(0, 11, 110, 0.151)",
         opacity: 0.9,
       }}
     />
